@@ -1,0 +1,37 @@
+server:
+  port: 8001
+
+mybatis:
+  type-aliases-package: com.duming.cloud.pojo
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  application:
+    name: springcloud-provider-dept
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  #数据源
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/eureka-db01?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+#Eureka的配置，服务注册到哪里
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: springcloud-provider-dept-hystrix-8001
+  server:
+    enable-self-preservation: false #保护模式
+
+#info配置
+info:
+  app.name: duming-cloud
+  company.name: duming
+
+
